@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 import 'package:locumspherelimited_admin/Employee%20Screen/components/emp_tile2.dart';
-import 'package:locumspherelimited_admin/Verifty%20Employees/components/emp_tile.dart';
 import 'package:locumspherelimited_admin/Verifty%20Employees/verify_employees.dart';
 
 class EmployeesScreen extends StatefulWidget {

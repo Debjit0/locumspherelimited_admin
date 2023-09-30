@@ -1,7 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:locumspherelimited_admin/Employee%20Screen/employee_screen.dart';
-import 'package:locumspherelimited_admin/Demo%20Pages/page3.dart';
+import 'package:locumspherelimited_admin/Unit%20Screen/unit_screen.dart';
 import 'package:locumspherelimited_admin/Home%20Screen/home.dart';
 
 
@@ -20,7 +20,7 @@ class _NavBarState extends State<NavBar> {
         body: const [
           HomeScreen(),
           EmployeesScreen(),
-          Page3(),
+          UnitsScreen(),
         ][selectedPageIndex],
         bottomNavigationBar: NavigationBar(
         labelBehavior: NavigationDestinationLabelBehavior.onlyShowSelected,
@@ -43,8 +43,8 @@ class _NavBarState extends State<NavBar> {
             ),
             NavigationDestination(
               selectedIcon: Icon(Icons.work),
-              icon: Icon(Icons.work_outlined),
-              label: 'Account',
+              icon: Icon(Icons.work_outline),
+              label: 'Units',
             ),
           ],
         ),
