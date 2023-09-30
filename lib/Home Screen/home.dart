@@ -13,6 +13,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text("Home"),
+        actions: [IconButton(onPressed: (){}, icon: Icon(Icons.settings_outlined))],
       ),
     );
   }
