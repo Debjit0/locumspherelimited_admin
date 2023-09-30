@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "63824746258",
+    "project_id": "locum-10af1",
+    "storage_bucket": "locum-10af1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:63824746258:android:a6ae6a2c713259d4b145cb",
+        "android_client_info": {
+          "package_name": "com.example.locumspherelimited"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAQcLAGkD1K1fjFgi_wT9USz23s4_fRsjs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:63824746258:android:01273e0a6d809393b145cb",
+        "android_client_info": {
+          "package_name": "com.example.locumspherelimited_admin"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAQcLAGkD1K1fjFgi_wT9USz23s4_fRsjs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
