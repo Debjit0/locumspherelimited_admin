@@ -59,7 +59,8 @@ class _HomeScreenState extends State<HomeScreen> {
                           staffMale: snapshot.data!.docs[index]['staffmale'],
                           unitName: snapshot.data!.docs[index]['unitname'],
                           unitid: snapshot.data!.docs[index]['unitid'],
-                          shiftPreference: snapshot.data!.docs[index]['shiftpreference'],
+                          shiftPreference: snapshot.data!.docs[index]
+                              ['shiftpreference'],
                         ),
                       ));
                     },
