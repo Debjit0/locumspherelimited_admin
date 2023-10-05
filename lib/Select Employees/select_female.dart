@@ -6,17 +6,18 @@ import 'package:get/get.dart';
 
 import 'package:locumspherelimited_admin/Models/select_employee_model.dart';
 
-import 'package:locumspherelimited_admin/Select%20Employees/select_female.dart';
+import 'package:locumspherelimited_admin/Select%20Employees/verify_selection.dart';
 
 
-class SelectMale extends StatefulWidget {
-  const SelectMale({super.key});
-
+// ignore: must_be_immutable
+class selectFemale extends StatefulWidget {
+  selectFemale({super.key, required this.selectedMale});
+  List<SelectEmployee> selectedMale;
   @override
-  State<SelectMale> createState() => _SelectMaleState();
+  State<selectFemale> createState() => _selectFemaleState();
 }
 
-class _SelectMaleState extends State<SelectMale> {
+class _selectFemaleState extends State<selectFemale> {
   CollectionReference userCollection =
       FirebaseFirestore.instance.collection('Users');
 
@@ -31,7 +32,7 @@ class _SelectMaleState extends State<SelectMale> {
   bool? checkboxvalue = false;
   Future<List<SelectEmployee>>? employeeList;
   List<SelectEmployee>? retrievedEmployeeList;
-  List<SelectEmployee> selectedMale = [];
+  List<SelectEmployee> selectedFemale = [];
 
   @override
   void initState() {
@@ -45,7 +46,7 @@ class _SelectMaleState extends State<SelectMale> {
         .collection('Users')
         .where('isverified', isEqualTo: true)
         .where('accounttype', isEqualTo: 'employee')
-        .where('gender', isEqualTo: 'Male')
+        .where('gender', isEqualTo: 'Female')
         .get();
     return snapshot.docs
         .map((docSnapshot) => SelectEmployee.fromDocumentSnapshot(docSnapshot))
@@ -76,11 +77,13 @@ class _SelectMaleState extends State<SelectMale> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Select Male Employees"),
+        title: Text("Select Female Employees"),
         actions: [
           IconButton(
               onPressed: () {
-                Get.to(selectFemale(selectedMale: selectedMale,));
+                Get.to(VerifySelection(
+                    selectedFemale: selectedFemale,
+                    selectedMale: widget.selectedMale));
               },
               icon: Icon(Icons.check)),
         ],
@@ -117,7 +120,7 @@ class _SelectMaleState extends State<SelectMale> {
 
                           if (retrievedEmployeeList![index].isSelected ==
                               true) {
-                            selectedMale.add(SelectEmployee(
+                            selectedFemale.add(SelectEmployee(
                                 firstname:
                                     retrievedEmployeeList![index].firstname,
                                 lastname:
@@ -131,7 +134,7 @@ class _SelectMaleState extends State<SelectMale> {
                                     retrievedEmployeeList![index].isSelected));
                           } else if (retrievedEmployeeList![index].isSelected ==
                               false) {
-                            selectedMale.removeWhere((element) =>
+                            selectedFemale.removeWhere((element) =>
                                 element.firstname ==
                                 retrievedEmployeeList![index].firstname);
                           }
