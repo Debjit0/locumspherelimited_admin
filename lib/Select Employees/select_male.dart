@@ -1,17 +1,15 @@
-
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:locumspherelimited_admin/Models/request_model.dart';
 
 import 'package:locumspherelimited_admin/Models/select_employee_model.dart';
 
 import 'package:locumspherelimited_admin/Select%20Employees/select_female.dart';
 
-
 class SelectMale extends StatefulWidget {
-  const SelectMale({super.key});
-
+  SelectMale({super.key, required this.reqId});
+  String reqId;
   @override
   State<SelectMale> createState() => _SelectMaleState();
 }
@@ -80,7 +78,7 @@ class _SelectMaleState extends State<SelectMale> {
         actions: [
           IconButton(
               onPressed: () {
-                Get.to(selectFemale(selectedMale: selectedMale,));
+                Get.to(SelectFemale(reqId: widget.reqId, selectedMale: selectedMale));
               },
               icon: Icon(Icons.check)),
         ],

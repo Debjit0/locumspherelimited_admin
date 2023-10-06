@@ -1,23 +1,20 @@
-
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import 'package:locumspherelimited_admin/Models/select_employee_model.dart';
-
 import 'package:locumspherelimited_admin/Select%20Employees/verify_selection.dart';
 
 
 // ignore: must_be_immutable
-class selectFemale extends StatefulWidget {
-  selectFemale({super.key, required this.selectedMale});
+class SelectFemale extends StatefulWidget {
+  SelectFemale({super.key, required this.reqId, required this.selectedMale});
   List<SelectEmployee> selectedMale;
+  String reqId;
   @override
-  State<selectFemale> createState() => _selectFemaleState();
+  State<SelectFemale> createState() => _SelectFemaleState();
 }
 
-class _selectFemaleState extends State<selectFemale> {
+class _SelectFemaleState extends State<SelectFemale> {
   CollectionReference userCollection =
       FirebaseFirestore.instance.collection('Users');
 
@@ -62,7 +59,7 @@ class _selectFemaleState extends State<selectFemale> {
     var empDocuments = await userCollection
         .where('isverified', isEqualTo: true)
         .where('accounttype', isEqualTo: 'employee')
-        .where('gender', isEqualTo: 'Male')
+        .where('gender', isEqualTo: 'Female')
         .get();
 
     setState(() {
@@ -82,8 +79,10 @@ class _selectFemaleState extends State<selectFemale> {
           IconButton(
               onPressed: () {
                 Get.to(VerifySelection(
-                    selectedFemale: selectedFemale,
-                    selectedMale: widget.selectedMale));
+                  reqId: widget.reqId,
+                  selectedFemale: selectedFemale,
+                  selectedMale: widget.selectedMale,
+                ));
               },
               icon: Icon(Icons.check)),
         ],

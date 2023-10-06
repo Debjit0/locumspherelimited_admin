@@ -36,7 +36,7 @@ class _HomeScreenState extends State<HomeScreen> {
         ],
       ),
       body: StreamBuilder(
-          stream: requestCollection.snapshots(),
+          stream: requestCollection.where("isresponded", isEqualTo: false).snapshots(),
           builder: (context, snapshot) {
             if (snapshot.hasError) {
               return Text('Something went wrong');
@@ -52,6 +52,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 return GestureDetector(
                     onTap: () {
                       Get.to(RequestDetails(
+                        reqId: snapshot.data!.docs[index].id,
                         request: RequestModel(
                           date: snapshot.data!.docs[index]['date'],
                           staffFemale: snapshot.data!.docs[index]
@@ -72,7 +73,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         staffFemale: snapshot.data!.docs[index]['stafffemale'],
                         staffMale: snapshot.data!.docs[index]['staffmale'],
                         unitid: snapshot.data!.docs[index]['unitid'],
-                        unitName: snapshot.data!.docs[index]['unitname']));
+                        unitName: snapshot.data!.docs[index]['unitname']),);
               },
             );
           }),
