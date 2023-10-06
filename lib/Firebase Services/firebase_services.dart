@@ -23,6 +23,12 @@ class Services {
     }
   }
 
+
+//take request model as argument
+//new collection to be made for allocations inside user
+//add date[] to User.doc
+//then in employee fetch list fetch employees without the date
+//where("someArray", whereNotIn: ["someItem"])
   Future assignEmployees(List<SelectEmployee> selectedMale,
       List<SelectEmployee> selectedFemale, String reqId) async {
     List emp = [];
