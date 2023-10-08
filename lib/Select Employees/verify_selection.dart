@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:locumspherelimited_admin/Employee%20Screen/components/emp_tile2.dart';
 import 'package:locumspherelimited_admin/Firebase%20Services/firebase_services.dart';
+import 'package:locumspherelimited_admin/Models/request_model.dart';
 import 'package:locumspherelimited_admin/Models/select_employee_model.dart';
 import 'package:locumspherelimited_admin/Nav%20Bar/navbar.dart';
 
@@ -9,11 +10,13 @@ import 'package:locumspherelimited_admin/Nav%20Bar/navbar.dart';
 class VerifySelection extends StatefulWidget {
   VerifySelection(
       {super.key,
+      required this.request,
       required this.selectedFemale,
       required this.selectedMale,
       required this.reqId});
   List<SelectEmployee> selectedMale;
   List<SelectEmployee> selectedFemale;
+  RequestModel request;
   String reqId;
   @override
   State<VerifySelection> createState() => _VerifySelectionState();
@@ -64,7 +67,7 @@ class _VerifySelectionState extends State<VerifySelection> {
         onPressed: () {
           Services()
               .assignEmployees(
-                  widget.selectedFemale, widget.selectedMale, widget.reqId)
+                  widget.selectedFemale, widget.selectedMale, widget.reqId, widget.request)
               .whenComplete(() {
             Get.to(NavBar());
           });

@@ -1,14 +1,19 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:locumspherelimited_admin/Models/request_model.dart';
 import 'package:locumspherelimited_admin/Models/select_employee_model.dart';
 import 'package:locumspherelimited_admin/Select%20Employees/verify_selection.dart';
 
-
 // ignore: must_be_immutable
 class SelectFemale extends StatefulWidget {
-  SelectFemale({super.key, required this.reqId, required this.selectedMale});
+  SelectFemale(
+      {super.key,
+      required this.reqId,
+      required this.selectedMale,
+      required this.request});
   List<SelectEmployee> selectedMale;
+  RequestModel request;
   String reqId;
   @override
   State<SelectFemale> createState() => _SelectFemaleState();
@@ -79,6 +84,7 @@ class _SelectFemaleState extends State<SelectFemale> {
           IconButton(
               onPressed: () {
                 Get.to(VerifySelection(
+                  request: widget.request,
                   reqId: widget.reqId,
                   selectedFemale: selectedFemale,
                   selectedMale: widget.selectedMale,

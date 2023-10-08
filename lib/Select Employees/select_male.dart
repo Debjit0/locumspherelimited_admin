@@ -8,8 +8,9 @@ import 'package:locumspherelimited_admin/Models/select_employee_model.dart';
 import 'package:locumspherelimited_admin/Select%20Employees/select_female.dart';
 
 class SelectMale extends StatefulWidget {
-  SelectMale({super.key, required this.reqId});
+  SelectMale({super.key, required this.reqId, required this.request});
   String reqId;
+  RequestModel request;
   @override
   State<SelectMale> createState() => _SelectMaleState();
 }
@@ -78,7 +79,9 @@ class _SelectMaleState extends State<SelectMale> {
         actions: [
           IconButton(
               onPressed: () {
-                Get.to(SelectFemale(reqId: widget.reqId, selectedMale: selectedMale));
+                Get.to(SelectFemale(
+                  request: widget.request,
+                    reqId: widget.reqId, selectedMale: selectedMale));
               },
               icon: Icon(Icons.check)),
         ],

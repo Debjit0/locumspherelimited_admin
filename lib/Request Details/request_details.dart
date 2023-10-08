@@ -29,6 +29,7 @@ class _RequestDetailsState extends State<RequestDetails> {
           ElevatedButton(
               onPressed: () {
                 Get.to(SelectMale(
+                  request: widget.request,
                   reqId: widget.reqId,
                 ));
               },
