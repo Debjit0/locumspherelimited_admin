@@ -38,7 +38,7 @@ class _VerifySelectionState extends State<VerifySelection> {
           ListView.builder(
             scrollDirection: Axis.vertical,
             shrinkWrap: true,
-            itemCount: widget.selectedFemale.length,
+            itemCount: widget.selectedMale.length,
             itemBuilder: (context, index) {
               return EmpTile2Widget(
                 title: widget.selectedMale[index].firstname,
@@ -53,7 +53,7 @@ class _VerifySelectionState extends State<VerifySelection> {
           ListView.builder(
             scrollDirection: Axis.vertical,
             shrinkWrap: true,
-            itemCount: widget.selectedMale.length,
+            itemCount: widget.selectedFemale.length,
             itemBuilder: (context, index) {
               return EmpTile2Widget(
                 title: widget.selectedFemale[index].firstname,
@@ -66,9 +66,10 @@ class _VerifySelectionState extends State<VerifySelection> {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           Services()
-              .assignEmployees(
-                  widget.selectedFemale, widget.selectedMale, widget.reqId, widget.request)
+              .assignEmployees(widget.selectedFemale, widget.selectedMale,
+                  widget.reqId, widget.request)
               .whenComplete(() {
+            Get.snackbar("Done", "Employees have been assigned");
             Get.to(NavBar());
           });
         },

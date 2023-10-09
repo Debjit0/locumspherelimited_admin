@@ -137,11 +137,13 @@ class _SelectFemaleState extends State<SelectFemale> {
                                     .shiftPreference,
                                 isSelected:
                                     retrievedEmployeeList![index].isSelected));
+                            print(selectedFemale.length);
                           } else if (retrievedEmployeeList![index].isSelected ==
                               false) {
                             selectedFemale.removeWhere((element) =>
                                 element.firstname ==
                                 retrievedEmployeeList![index].firstname);
+                                print(selectedFemale.length);
                           }
                         });
                       },

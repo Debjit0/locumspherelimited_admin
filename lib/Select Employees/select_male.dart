@@ -80,8 +80,9 @@ class _SelectMaleState extends State<SelectMale> {
           IconButton(
               onPressed: () {
                 Get.to(SelectFemale(
-                  request: widget.request,
-                    reqId: widget.reqId, selectedMale: selectedMale));
+                    request: widget.request,
+                    reqId: widget.reqId,
+                    selectedMale: selectedMale));
               },
               icon: Icon(Icons.check)),
         ],
@@ -130,11 +131,13 @@ class _SelectMaleState extends State<SelectMale> {
                                     .shiftPreference,
                                 isSelected:
                                     retrievedEmployeeList![index].isSelected));
+                            print(selectedMale.length);
                           } else if (retrievedEmployeeList![index].isSelected ==
                               false) {
                             selectedMale.removeWhere((element) =>
                                 element.firstname ==
                                 retrievedEmployeeList![index].firstname);
+                            print(selectedMale.length);
                           }
                         });
                       },
