@@ -29,8 +29,11 @@ class Services {
 //add date[] to User.doc
 //then in employee fetch list fetch employees without the date
 //where("someArray", whereNotIn: ["someItem"])
-  Future assignEmployees(List<SelectEmployee> selectedMale,
-      List<SelectEmployee> selectedFemale, String reqId, RequestModel request) async {
+  Future assignEmployees(
+      List<SelectEmployee> selectedMale,
+      List<SelectEmployee> selectedFemale,
+      String reqId,
+      RequestModel request) async {
     List emp = [];
     for (int i = 0; i < selectedMale.length; i++) {
       var uid = selectedMale[i].uid;
@@ -48,7 +51,18 @@ class Services {
           .collection("Users")
           .doc(emp[i])
           .collection("Allocations")
-          .doc("${emp[i]}_${reqId}").set({"date":request.date, "unitname":request.unitName, "unitid":request.unitid});
+          .doc("${emp[i]}_${reqId}")
+          .set({
+        "date": request.date,
+        "unitname": request.unitName,
+        "unitid": request.unitid,
+        "checkin":"",
+        "checkout":"",
+      });
+
+      _firestore.collection("Attendance").doc(emp[i]).set({"${request.date}":""});
+
+      //_firestore.collection("Users").doc(emp[i]).update({'allocateddates': FieldValue.arrayUnion([request.date])});
     }
   }
 }

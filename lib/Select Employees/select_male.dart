@@ -7,6 +7,7 @@ import 'package:locumspherelimited_admin/Models/select_employee_model.dart';
 
 import 'package:locumspherelimited_admin/Select%20Employees/select_female.dart';
 
+// ignore: must_be_immutable
 class SelectMale extends StatefulWidget {
   SelectMale({super.key, required this.reqId, required this.request});
   String reqId;
@@ -43,6 +44,7 @@ class _SelectMaleState extends State<SelectMale> {
         .instance
         .collection('Users')
         .where('isverified', isEqualTo: true)
+        //.where('allocateddates', arrayContains: widget.request.date)
         .where('accounttype', isEqualTo: 'employee')
         .where('gender', isEqualTo: 'Male')
         .get();

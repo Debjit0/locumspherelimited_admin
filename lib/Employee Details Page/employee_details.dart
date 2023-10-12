@@ -1,4 +1,7 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_navigation/get_navigation.dart';
 
 // ignore: must_be_immutable
 class EmployeeDetails extends StatefulWidget {
@@ -14,6 +17,15 @@ class _EmployeeDetailsState extends State<EmployeeDetails> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text(widget.empName)),
+      body: Column(
+        children: [
+          ElevatedButton(
+              onPressed: () {
+                
+              },
+              child: Text("View Attendance"))
+        ],
+      ),
     );
   }
 }
