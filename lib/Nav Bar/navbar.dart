@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:locumspherelimited_admin/Allocation%20History/allocation_history.dart';
 import 'package:locumspherelimited_admin/Employee%20Screen/employee_screen.dart';
 import 'package:locumspherelimited_admin/Unit%20Screen/unit_screen.dart';
 import 'package:locumspherelimited_admin/Home%20Screen/home.dart';
@@ -19,6 +20,7 @@ class _NavBarState extends State<NavBar> {
     return Scaffold(
         body: const [
           HomeScreen(),
+          AllocationHistory(),
           EmployeesScreen(),
           UnitsScreen(),
         ][selectedPageIndex],
@@ -35,6 +37,11 @@ class _NavBarState extends State<NavBar> {
               selectedIcon: Icon(Icons.home),
               icon: Icon(Icons.home_outlined),
               label: 'Requests',
+            ),
+            NavigationDestination(
+              selectedIcon: Icon(Icons.history),
+              icon: Icon(Icons.history_outlined),
+              label: 'History',
             ),
             NavigationDestination(
               selectedIcon: Icon(Icons.group),

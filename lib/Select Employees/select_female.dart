@@ -90,7 +90,7 @@ class _SelectFemaleState extends State<SelectFemale> {
                   selectedMale: widget.selectedMale,
                 ));
               },
-              icon: Icon(Icons.check)),
+              icon: const Icon(Icons.check)),
         ],
       ),
       body: FutureBuilder(
@@ -113,11 +113,11 @@ class _SelectFemaleState extends State<SelectFemale> {
                       title: Text(retrievedEmployeeList![index].firstname),
                       subtitle: Text(retrievedEmployeeList![index].firstname),
                       trailing: retrievedEmployeeList![index].isSelected
-                          ? Icon(
+                          ? const Icon(
                               Icons.check_circle,
                               color: Colors.green,
                             )
-                          : Icon(Icons.check_circle_outline),
+                          : const Icon(Icons.check_circle_outline),
                       onTap: () {
                         setState(() {
                           retrievedEmployeeList![index].isSelected =
@@ -137,7 +137,7 @@ class _SelectFemaleState extends State<SelectFemale> {
                                     .shiftPreference,
                                 isSelected:
                                     retrievedEmployeeList![index].isSelected));
-                            print(selectedFemale.length);
+                            //print(selectedFemale.length);
                           } else if (retrievedEmployeeList![index].isSelected ==
                               false) {
                             selectedFemale.removeWhere((element) =>
