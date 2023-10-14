@@ -53,7 +53,7 @@ class Services {
           .collection("Allocations")
           .doc("${emp[i]}_${reqId}")
           .set({
-        "date": request.date,
+        "date": DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day).toString(),
         "unitname": request.unitName,
         "unitid": request.unitid,
         "checkin":"",
