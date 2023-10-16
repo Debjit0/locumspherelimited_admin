@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 import 'package:locumspherelimited_admin/Models/request_model.dart';
@@ -64,5 +65,29 @@ class Services {
 
       //_firestore.collection("Users").doc(emp[i]).update({'allocateddates': FieldValue.arrayUnion([request.date])});
     }
+
+    
+  }
+  Future sendMessage(Map<String, dynamic> chatMessageData, String name) async {
+    /*await FirebaseFirestore.instance
+        .collection("Chats")
+        .doc("Admin_${FirebaseAuth.instance.currentUser!.uid}")
+        .update({
+      "participants": [uid, "Admin"]
+    });*/
+    await FirebaseFirestore.instance
+        .collection("Chats")
+        .doc("Admin_${name}")
+        .collection("Messages")
+        .add(chatMessageData);
+    await FirebaseFirestore.instance
+        .collection("Chats")
+        .doc("Admin_${name}")
+        .set({
+      "recentmessage": chatMessageData['message'],
+      "recentmessagesender": chatMessageData['sender'],
+      "recentmessagetime": chatMessageData['time'].toString(),
+      "participants": ["Admin", name]
+    });
   }
 }

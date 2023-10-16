@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:locumspherelimited_admin/Allocation%20History/allocation_history.dart';
+import 'package:locumspherelimited_admin/Chat%20Screen/all_chats.dart';
 import 'package:locumspherelimited_admin/Employee%20Screen/employee_screen.dart';
 import 'package:locumspherelimited_admin/Unit%20Screen/unit_screen.dart';
 import 'package:locumspherelimited_admin/Home%20Screen/home.dart';
@@ -23,6 +24,7 @@ class _NavBarState extends State<NavBar> {
           AllocationHistory(),
           EmployeesScreen(),
           UnitsScreen(),
+          AllChat()
         ][selectedPageIndex],
         bottomNavigationBar: NavigationBar(
         labelBehavior: NavigationDestinationLabelBehavior.onlyShowSelected,
@@ -51,6 +53,11 @@ class _NavBarState extends State<NavBar> {
             NavigationDestination(
               selectedIcon: Icon(Icons.work),
               icon: Icon(Icons.work_outline),
+              label: 'Units',
+            ),
+            NavigationDestination(
+              selectedIcon: Icon(Icons.chat),
+              icon: Icon(Icons.chat_outlined),
               label: 'Units',
             ),
           ],
