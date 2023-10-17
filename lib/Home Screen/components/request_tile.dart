@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:locumspherelimited_admin/constants/colors.dart';
 
 // ignore: must_be_immutable
 class RequestTileWidget extends StatelessWidget {
@@ -26,7 +27,7 @@ class RequestTileWidget extends StatelessWidget {
         margin: const EdgeInsets.symmetric(horizontal: 14, vertical: 7),
         padding: const EdgeInsets.all(14),
         decoration: BoxDecoration(
-            color: Colors.deepPurple[50],
+            color: primaryColorLight,
             borderRadius: BorderRadius.circular(20)),
         child: Column(
           //mainAxisAlignment: MainAxisAlignment.start,

@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:locumspherelimited_admin/Home%20Screen/components/request_tile.dart';
 import 'package:locumspherelimited_admin/Models/request_model.dart';
@@ -36,7 +37,9 @@ class _HomeScreenState extends State<HomeScreen> {
         ],
       ),
       body: StreamBuilder(
-          stream: requestCollection.where("isresponded", isEqualTo: false).snapshots(),
+          stream: requestCollection
+              .where("isresponded", isEqualTo: false)
+              .snapshots(),
           builder: (context, snapshot) {
             if (snapshot.hasError) {
               return Text('Something went wrong');
@@ -45,11 +48,11 @@ class _HomeScreenState extends State<HomeScreen> {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return Text("Loading");
             }
-
-            return ListView.builder(
-              itemCount: snapshot.data!.docs.length,
-              itemBuilder: (context, index) {
-                return GestureDetector(
+            if (snapshot.data!.docs.length != 0) {
+              return ListView.builder(
+                itemCount: snapshot.data!.docs.length,
+                itemBuilder: (context, index) {
+                  return GestureDetector(
                     onTap: () {
                       Get.to(RequestDetails(
                         reqId: snapshot.data!.docs[index].id,
@@ -73,9 +76,28 @@ class _HomeScreenState extends State<HomeScreen> {
                         staffFemale: snapshot.data!.docs[index]['stafffemale'],
                         staffMale: snapshot.data!.docs[index]['staffmale'],
                         unitid: snapshot.data!.docs[index]['unitid'],
-                        unitName: snapshot.data!.docs[index]['unitname']),);
-              },
+                        unitName: snapshot.data!.docs[index]['unitname']),
+                  );
+                },
+              );
+            }else{
+              return Container(
+              width: double.infinity,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  SvgPicture.asset(
+                    "assets/images/not_found.svg",
+                    height: 200,
+                  ),
+                  Text(
+                    "No New Request",
+                  )
+                ],
+              ),
             );
+            }
           }),
     );
   }

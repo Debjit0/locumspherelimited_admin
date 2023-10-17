@@ -5,6 +5,7 @@ import 'package:get/get_navigation/get_navigation.dart';
 import 'package:locumspherelimited_admin/Employee%20Details%20Page/employee_details.dart';
 import 'package:locumspherelimited_admin/Employee%20Screen/components/emp_tile2.dart';
 import 'package:locumspherelimited_admin/Verifty%20Employees/verify_employees.dart';
+import 'package:locumspherelimited_admin/constants/colors.dart';
 import 'package:locumspherelimited_admin/utils/search_text_field.dart';
 
 class EmployeesScreen extends StatefulWidget {
@@ -90,7 +91,7 @@ class _EmployeesScreenState extends State<EmployeesScreen> {
               onPressed: () {
                 Get.to(VerifyEmployees());
               },
-              icon: Icon(Icons.check)),
+              icon: Icon(Icons.check, color: primaryColor,)),
         ],
       ),
       body: Column(

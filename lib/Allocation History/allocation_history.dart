@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:locumspherelimited_admin/Home%20Screen/components/request_tile.dart';
 import 'package:locumspherelimited_admin/Models/request_model.dart';
@@ -32,42 +33,62 @@ class _AllocationHistoryState extends State<AllocationHistory> {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return Text("Loading");
             }
-
-            return ListView.builder(
-              itemCount: snapshot.data!.docs.length,
-              itemBuilder: (context, index) {
-                return GestureDetector(
-                  onTap: () {
-                    Get.to(
-                      AllocationDetails(
-                        reqId: snapshot.data!.docs[index].id,
-                        request: RequestModel(
-                            date: DateTime.parse(
-                                    snapshot.data!.docs[index]['date'])
-                                .toString(),
-                            shiftPreference: snapshot.data!.docs[index]
-                                ['shiftpreference'],
-                            staffFemale: snapshot.data!.docs[index]
-                                ['stafffemale'],
-                            staffMale: snapshot.data!.docs[index]['staffmale'],
-                            unitid: snapshot.data!.docs[index]['unitid'],
-                            unitName: snapshot.data!.docs[index]['unitname']),
-                        empAllocataed: snapshot.data!.docs[index]
-                            ['assignedemployees'],
-                      ),
-                    );
-                  },
-                  child: RequestTileWidget(
-                      date: DateTime.parse(snapshot.data!.docs[index]['date']),
-                      shiftPreference: snapshot.data!.docs[index]
-                          ['shiftpreference'],
-                      staffFemale: snapshot.data!.docs[index]['stafffemale'],
-                      staffMale: snapshot.data!.docs[index]['staffmale'],
-                      unitid: snapshot.data!.docs[index]['unitid'],
-                      unitName: snapshot.data!.docs[index]['unitname']),
-                );
-              },
+            if (snapshot.data!.docs != 0) {
+              return ListView.builder(
+                itemCount: snapshot.data!.docs.length,
+                itemBuilder: (context, index) {
+                  return GestureDetector(
+                    onTap: () {
+                      Get.to(
+                        AllocationDetails(
+                          reqId: snapshot.data!.docs[index].id,
+                          request: RequestModel(
+                              date: DateTime.parse(
+                                      snapshot.data!.docs[index]['date'])
+                                  .toString(),
+                              shiftPreference: snapshot.data!.docs[index]
+                                  ['shiftpreference'],
+                              staffFemale: snapshot.data!.docs[index]
+                                  ['stafffemale'],
+                              staffMale: snapshot.data!.docs[index]
+                                  ['staffmale'],
+                              unitid: snapshot.data!.docs[index]['unitid'],
+                              unitName: snapshot.data!.docs[index]['unitname']),
+                          empAllocataed: snapshot.data!.docs[index]
+                              ['assignedemployees'],
+                        ),
+                      );
+                    },
+                    child: RequestTileWidget(
+                        date:
+                            DateTime.parse(snapshot.data!.docs[index]['date']),
+                        shiftPreference: snapshot.data!.docs[index]
+                            ['shiftpreference'],
+                        staffFemale: snapshot.data!.docs[index]['stafffemale'],
+                        staffMale: snapshot.data!.docs[index]['staffmale'],
+                        unitid: snapshot.data!.docs[index]['unitid'],
+                        unitName: snapshot.data!.docs[index]['unitname']),
+                  );
+                },
+              );
+            }else{
+              return Container(
+              width: double.infinity,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  SvgPicture.asset(
+                    "assets/images/not_found.svg",
+                    height: 200,
+                  ),
+                  Text(
+                    "No Tasks Allocated Today",
+                  )
+                ],
+              ),
             );
+            }
           }),
     );
   }
@@ -138,21 +159,25 @@ class _AllocationDetailsState extends State<AllocationDetails> {
                 Text(widget.request.shiftPreference),
                 ListView.builder(
                   physics: NeverScrollableScrollPhysics(),
-                    shrinkWrap: true,
+                  shrinkWrap: true,
                   itemCount: fetchedEmp.length,
                   itemBuilder: (context, index) {
                     return Column(
                       children: [
                         Text(fetchedEmp[index].fname),
-                        fetchedEmp[index].checkin!=""? Text(fetchedEmp[index].checkin):Text("--/--"),
-                        fetchedEmp[index].checkout!=""? Text(fetchedEmp[index].checkout):Text("--/--")
+                        fetchedEmp[index].checkin != ""
+                            ? Text(fetchedEmp[index].checkin)
+                            : Text("--/--"),
+                        fetchedEmp[index].checkout != ""
+                            ? Text(fetchedEmp[index].checkout)
+                            : Text("--/--")
                       ],
                     );
                   },
                 ),
               ],
             ),
-            )
+          )
         : Scaffold(
             body: Center(
             child: CircularProgressIndicator(),

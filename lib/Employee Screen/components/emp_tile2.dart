@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:locumspherelimited_admin/constants/colors.dart';
 
 // ignore: must_be_immutable
 class EmpTile2Widget extends StatelessWidget {
@@ -16,7 +17,7 @@ class EmpTile2Widget extends StatelessWidget {
     return Container(
       margin: EdgeInsets.symmetric(horizontal:14,vertical: 7),
       padding: EdgeInsets.all(14),
-      decoration: BoxDecoration(color: Colors.deepPurple[50], borderRadius: BorderRadius.circular(20)),
+      decoration: BoxDecoration(color: primaryColorLight, borderRadius: BorderRadius.circular(20)),
       child: ListTile(
           title: Text(
             title,

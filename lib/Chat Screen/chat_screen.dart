@@ -1,7 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-
 import 'package:locumspherelimited_admin/Chat%20Screen/components/message_tile.dart';
 import 'package:locumspherelimited_admin/Firebase%20Services/firebase_services.dart';
 

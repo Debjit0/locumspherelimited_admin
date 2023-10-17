@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:locumspherelimited_admin/constants/colors.dart';
 
 // ignore: must_be_immutable
 class SearchTextField extends StatelessWidget {
@@ -24,7 +25,7 @@ class SearchTextField extends StatelessWidget {
         controller: controller,
         textAlign: TextAlign.left,
         decoration: InputDecoration(
-          prefixIconColor: Colors.deepPurple,
+          prefixIconColor: primaryColor,
           prefixIcon: Icon(Icons.search),
           contentPadding: const EdgeInsets.all(16),
           border: OutlineInputBorder(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:locumspherelimited_admin/constants/colors.dart';
 
 // ignore: must_be_immutable
 class UnitTile extends StatelessWidget {
@@ -17,7 +18,7 @@ class UnitTile extends StatelessWidget {
       margin: EdgeInsets.symmetric(horizontal: 14, vertical: 7),
       padding: EdgeInsets.all(14),
       decoration: BoxDecoration(
-          color: Colors.deepPurple[50],
+          color: primaryColorLight,
           borderRadius: BorderRadius.circular(20)),
       child: ListTile(
         title: Text(
@@ -25,7 +26,7 @@ class UnitTile extends StatelessWidget {
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
         subtitle: Text(subtitle),
-        trailing: IconButton(onPressed: (){}, icon: Icon(Icons.delete, color: Colors.deepPurple,)),
+        trailing: IconButton(onPressed: (){}, icon: Icon(Icons.delete, color: primaryColor,)),
       ),
     );
   }
