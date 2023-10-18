@@ -58,7 +58,7 @@ class _NavBarState extends State<NavBar> {
             NavigationDestination(
               selectedIcon: Icon(Icons.chat),
               icon: Icon(Icons.chat_outlined),
-              label: 'Units',
+              label: 'Chat',
             ),
           ],
         ),
