@@ -39,6 +39,7 @@ class _AllChatState extends State<AllChat> {
           return ListView.builder(
             itemCount: snapshot.data!.docs.length,
             itemBuilder: (context, index) {
+             
               return GestureDetector(
                 onTap: () async {
                   String name = "";
@@ -50,13 +51,30 @@ class _AllChatState extends State<AllChat> {
                     }
                   }
                   Get.to(ChatScreen(name: name));
-                  print("Admin_${name}}");
+                  //print("Admin_${name}}");
+                   /*print(snapshot.data!.docs[index]["recentmessagesender"]
+                  .toString()
+                  .split("_")
+                  .first);*/
                 },
                 child: Container(
+                  child: Column(
+                    children: [
+                      Row(
+                        children: [
+                          Text(snapshot.data!.docs[index]["recentmessagesender"]
+                              .toString()
+                              .split("_")
+                              .first),
+                        ],
+                      ),
+                    ],
+                  ),
+                  height: 80,
                   margin: EdgeInsets.all(14),
                   padding: EdgeInsets.all(14),
                   decoration: BoxDecoration(color: Colors.lightGreen),
-                  child: Text(snapshot.data!.docs[index]['recentmessage']),
+                  //child: Text(snapshot.data!.docs[index]['recentmessage']),
                 ),
               );
             },
