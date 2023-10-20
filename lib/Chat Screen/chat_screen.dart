@@ -5,8 +5,9 @@ import 'package:locumspherelimited_admin/Firebase%20Services/firebase_services.d
 
 // ignore: must_be_immutable
 class ChatScreen extends StatefulWidget {
-  ChatScreen({super.key, required this.name});
+  ChatScreen({super.key, required this.name, required this.uid});
   String name;
+  String uid;
   @override
   State<ChatScreen> createState() => _ChatScreenState();
 }
@@ -30,7 +31,7 @@ class _ChatScreenState extends State<ChatScreen> {
         "time": DateTime.now().millisecondsSinceEpoch,
       };
 
-      Services().sendMessage(chatMessageMap, widget.name);
+      Services().sendMessage(chatMessageMap, widget.uid, widget.name);
       setState(() {
         messageController.clear();
       });
@@ -40,7 +41,7 @@ class _ChatScreenState extends State<ChatScreen> {
   getChat() {
     chats = FirebaseFirestore.instance
         .collection("Chats")
-        .doc("Admin_${widget.name}")
+        .doc("Admin_${widget.uid}")
         .collection("Messages")
         .orderBy('time')
         .snapshots();
@@ -125,8 +126,7 @@ class _ChatScreenState extends State<ChatScreen> {
                   return MessageTile(
                       message: snapshot.data.docs[index]['message'],
                       sender: 'You',
-                      sentByMe: 
-                          snapshot.data.docs[index]['sender']=="Admin");
+                      sentByMe: snapshot.data.docs[index]['sender'] == "Admin");
                 },
               )
             : Container(child: Text("No"));

@@ -14,6 +14,7 @@ class AllChat extends StatefulWidget {
 class _AllChatState extends State<AllChat> {
   CollectionReference ChatCollection =
       FirebaseFirestore.instance.collection('Chats');
+  String name = "";
 
   @override
   Widget build(BuildContext context) {
@@ -39,42 +40,53 @@ class _AllChatState extends State<AllChat> {
           return ListView.builder(
             itemCount: snapshot.data!.docs.length,
             itemBuilder: (context, index) {
-             
+              List participants = snapshot.data!.docs[index]["participants"];
+              for (int i = 0; i < 2; i++) {
+                if (participants[i] != "Admin") {
+                  name = participants[i];
+                }
+              }
+
               return GestureDetector(
                 onTap: () async {
                   String name = "";
                   List participants =
-                      await snapshot.data!.docs[index]["participants"];
+                      snapshot.data!.docs[index]["participants"];
                   for (int i = 0; i < 2; i++) {
                     if (participants[i] != "Admin") {
                       name = participants[i];
                     }
                   }
-                  Get.to(ChatScreen(name: name));
+                  final splitted = name.split("_");
+                  Get.to(ChatScreen(
+                    name: splitted[0],
+                    uid: splitted[1],
+                  ));
                   //print("Admin_${name}}");
-                   /*print(snapshot.data!.docs[index]["recentmessagesender"]
+                  /*print(snapshot.data!.docs[index]["recentmessagesender"]
                   .toString()
                   .split("_")
                   .first);*/
                 },
-                child: Container(
-                  child: Column(
-                    children: [
-                      Row(
-                        children: [
-                          Text(snapshot.data!.docs[index]["recentmessagesender"]
-                              .toString()
-                              .split("_")
-                              .first),
-                        ],
-                      ),
-                    ],
+                child: ListTile(
+                  leading: CircleAvatar(
+                    radius: 30,
+                    backgroundColor: Theme.of(context).primaryColor,
+                    child: Text(
+                      name.substring(0, 1).toUpperCase(),
+                      textAlign: TextAlign.center,
+                      style: const TextStyle(
+                          color: Colors.white, fontWeight: FontWeight.w500),
+                    ),
                   ),
-                  height: 80,
-                  margin: EdgeInsets.all(14),
-                  padding: EdgeInsets.all(14),
-                  decoration: BoxDecoration(color: Colors.lightGreen),
-                  //child: Text(snapshot.data!.docs[index]['recentmessage']),
+                  title: Text(
+                    name.split("_").first,
+                    style: const TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                  subtitle: Text(
+                    "Chat with ${name.split("_").first} Admin",
+                    style: const TextStyle(fontSize: 13),
+                  ),
                 ),
               );
             },
@@ -94,6 +106,7 @@ class _AllChatState extends State<AllChat> {
                       onTap: () {
                         Get.to(ChatScreen(
                           name: "Admin",
+                          uid: "sef",
                         ));
                       },
                     )
