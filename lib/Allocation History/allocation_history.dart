@@ -33,7 +33,7 @@ class _AllocationHistoryState extends State<AllocationHistory> {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return Text("Loading");
             }
-            if (snapshot.data!.docs != 0) {
+            if (snapshot.data!.docs.length != 0) {
               return ListView.builder(
                 itemCount: snapshot.data!.docs.length,
                 itemBuilder: (context, index) {
@@ -83,7 +83,7 @@ class _AllocationHistoryState extends State<AllocationHistory> {
                     height: 200,
                   ),
                   Text(
-                    "No Tasks Allocated Today",
+                    "No Allocation History",
                   )
                 ],
               ),

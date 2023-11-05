@@ -27,7 +27,7 @@ class _ChatScreenState extends State<ChatScreen> {
     if (messageController.text.isNotEmpty) {
       Map<String, dynamic> chatMessageMap = {
         "message": messageController.text,
-        "sender": "Admin",
+        "sender": widget.name,
         "time": DateTime.now().millisecondsSinceEpoch,
       };
 

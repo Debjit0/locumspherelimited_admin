@@ -84,7 +84,7 @@ class _AllChatState extends State<AllChat> {
                     style: const TextStyle(fontWeight: FontWeight.bold),
                   ),
                   subtitle: Text(
-                    "Chat with ${name.split("_").first} Admin",
+                    "Chat with ${name.split("_").first} as Admin",
                     style: const TextStyle(fontSize: 13),
                   ),
                 ),
